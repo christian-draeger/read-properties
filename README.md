@@ -24,7 +24,7 @@ The value of the given property.
       id: read_property
       uses: christian-draeger/read-properties@1.0.0
       with:
-        path: './application.properties'
+        path: './src/main/resources/application.properties'
         property: 'the.key.of.the.property'
     - name: Do something with your bumped release version
       run: echo ${{ steps.read_property.outputs.value }}
