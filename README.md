@@ -1,4 +1,4 @@
-# Read Properties
+# Read Properties [![CI build](https://github.com/christian-draeger/read-properties/workflows/CI/badge.svg)](https://github.com/christian-draeger/read-properties/actions?query=workflow%3ACI+branch%3Amaster)
 
 This is a GitHub action to read from java `.properties` files.
 
