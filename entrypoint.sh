@@ -14,9 +14,10 @@ main() {
   path="$1"; property="$2"
 
   echo "path: $path"
-  echo "path: $property"
+  echo "property: $property"
 
-  echo ::set-output name=next-version::"$next_version"
+  result="dummy"
+  echo ::set-output name=value::"$result"
 }
 
 main "$1" "$2"
