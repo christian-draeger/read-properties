@@ -18,5 +18,5 @@ jobs:
     - name: Do something with the property value
       run: echo ${{ steps.read_first_property.outputs.value }}
     - name: Verify first property
-      if: steps.first.outputs.value != 'bar'
+      if: steps.read_first_property.outputs.value != 'bar'
       run: exit 1
