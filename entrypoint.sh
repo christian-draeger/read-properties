@@ -13,10 +13,11 @@ main() {
 
   path="$1"; property="$2"
 
+
   echo "path: $path"
   echo "property: $property"
 
-  result="dummy"
+  result=$(grep "^$property=" "$path" |  sed "s/$property=//")
   echo ::set-output name=value::"$result"
 }
 
