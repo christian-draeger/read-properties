@@ -13,7 +13,9 @@ main() {
 
   path="$1"; property="$2"
 
-  bat "$path"
+
+  echo "path: $path"
+  echo "property: $property"
 
   result=$(grep "^$property=" "$path" |  sed "s/$property=//")
   echo ::set-output name=value::"$result"
