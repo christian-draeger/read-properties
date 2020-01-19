@@ -1,0 +1,22 @@
+name: Read Properties
+description: Read property from java properties files.
+author: Christian Dräger
+branding:
+  icon: 'book-open'
+  color: 'yellow'
+inputs:
+  path:
+    description: 'The path to properties file to read'
+    required: true
+  property:
+    description: 'The property you want to read'
+    required: true
+outputs:
+  value:
+    description: 'The value of the given property'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.path }}
+    - ${{ inputs.property }}
