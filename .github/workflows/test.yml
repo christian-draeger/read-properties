@@ -1,0 +1,17 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: ./
+      with:
+        path: './test/foo.properties'
+        property: 'foo'
+    - name: Do something with the property value
+      run: echo ${{ steps.read_property.outputs.value }}
