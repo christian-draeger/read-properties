@@ -9,9 +9,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - uses: ./
+    - name: Read first property
+      id: first
+      uses: ./
       with:
         path: './test/foo.properties'
         property: 'foo'
     - name: Do something with the property value
       run: echo ${{ steps.read_property.outputs.value }}
+    - name: Verify first property
+      if: steps.first.outputs.value != 'bar'
+        run: exit 1
