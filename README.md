@@ -2,6 +2,12 @@
 
 This is a GitHub action to read from java `.properties` files.
 
+**Note:** It will work for all file-types that follow the `key=value` pattern.
+
+> If you are also looking for an action that enables you to **write** values to `.properties` files use
+> [Write Properties action](https://github.com/christian-draeger/write-properties)
+
+
 ## Inputs
 
 ### `path`
