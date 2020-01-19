@@ -42,5 +42,5 @@ jobs:
         path: './test/foo.properties'
         property: 'foo.bar'
     - name: Verify second property has been read correctly
-      if: steps.read_third_property.outputs.value != 'foobar'
+      if: steps.read_second_property.outputs.value != 'foobar'
       run: exit 1
