@@ -11,13 +11,19 @@ set -euo pipefail
 
 main() {
 
-  path="$1"; property="$2"
+  local path
+  local property
+  local result
 
+  path="$1"
+  property="$2"
 
-  echo "path: $path"
-  echo "property: $property"
+  echo "path to properties-file: $path"
+  echo "property key: $property"
 
   result=$(grep "^$property=" "$path" |  sed "s/$property=//")
+
+  echo "property value: $property"
   echo ::set-output name=value::"$result"
 }
 
