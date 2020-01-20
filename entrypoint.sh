@@ -21,7 +21,7 @@ main() {
   echo "path to properties-file: $path"
   echo "property key: $property"
 
-  result=$(grep "^$property=" "$path" |  sed "s/$property=//")
+  result=$(sed -n "/^$property=/s/$property=//p" "$path")
 
   echo "property value: $property"
   echo ::set-output name=value::"$result"
