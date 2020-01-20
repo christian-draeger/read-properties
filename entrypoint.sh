@@ -1,6 +1,9 @@
 #!/bin/bash -l
 
 # active bash options:
+#   - bash act as if it had been invoked as a login shell".
+#     Login shells read certain initialization files from your home directory,
+#     such as .bash_profile. (-l)
 #   - stops the execution of the shell script whenever there are any errors from a command or pipeline (-e)
 #   - option to treat unset variables as an error and exit immediately (-u)
 #   - print each command before executing it (-x)
