@@ -23,7 +23,7 @@ main() {
 
   result=$(sed -n "/^$property=/s/$property=//p" "$path")
 
-  echo "property value: $property"
+  echo "property value: $result"
   echo ::set-output name=value::"$result"
 }
 
