@@ -24,7 +24,9 @@ main() {
   echo "path to properties-file: $path"
   echo "property key: $property"
 
-  result=$(sed -n "/^$property=/s/$property=//p" "$path")
+  # For lines that have the given property on the left-hand side, remove 
+  # the property name, the equals and any spaces to get the property value.
+  result=$(sed -n "/^[[:space:]]*$property[[:space:]]*=[[:space:]]*/s/^[[:space:]]*$property[[:space:]]*=[[:space:]]*//p" "$path")
 
   echo "property value: $result"
   echo ::set-output name=value::"$result"
