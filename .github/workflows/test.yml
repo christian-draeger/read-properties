@@ -44,3 +44,14 @@ jobs:
     - name: Verify second property has been read correctly
       if: steps.read_second_property.outputs.value != 'foobar'
       run: exit 1
+
+    # test 4: properties with spaces around the equals sign.
+    - name: Read property with spaces
+      id: read_property_with_spaces
+      uses: ./
+      with:
+        path: './test/foo.properties'
+        property: 'with.space'
+    - name: Verify property with spaces has been read correctly
+      if: steps.read_property_with_spaces.outputs.value != '42'
+      run: exit 1
