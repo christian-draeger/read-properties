@@ -28,7 +28,7 @@ The value of the given property.
 
     - name: Read value from Properties-file
       id: read_property
-      uses: christian-draeger/read-properties@1.0.0
+      uses: christian-draeger/read-properties@1.0.1
       with:
         path: './src/main/resources/application.properties'
         property: 'the.key.of.the.property'
