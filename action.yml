@@ -8,15 +8,12 @@ inputs:
   path:
     description: 'The path to properties file to read'
     required: true
-  property:
-    description: 'The property you want to read'
+  properties:
+    description: 'The properties you want to read. Space separated'
     required: true
-outputs:
-  value:
-    description: 'The value of the given property'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.path }}
-    - ${{ inputs.property }}
+    - ${{ inputs.properties }}
