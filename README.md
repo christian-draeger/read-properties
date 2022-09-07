@@ -26,7 +26,7 @@ For each provided property, one output of the same name exists. Because the name
 
     - name: Read value from Properties-file
       id: read_property
-      uses: christian-draeger/read-properties@1.0.1
+      uses: christian-draeger/read-properties@1.1.0
       with:
         path: './src/main/resources/application.properties'
         properties: 'the.key.of.a.property the.key.of.another.property'
