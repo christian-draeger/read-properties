@@ -16,11 +16,11 @@ jobs:
       uses: ./
       with:
         path: './test/foo.properties'
-        property: 'foo'
+        properties: 'foo'
     - name: Do something with the property value
-      run: echo ${{ steps.read_first_property.outputs.value }}
+      run: echo ${{ steps.read_first_property.outputs.foo }}
     - name: Verify first property has been read correctly
-      if: steps.read_first_property.outputs.value != 'bar'
+      if: steps.read_first_property.outputs.foo != 'bar'
       run: exit 1
 
     # test 2
@@ -29,9 +29,9 @@ jobs:
       uses: ./
       with:
         path: './test/foo.properties'
-        property: 'foo.bar.foo'
+        properties: 'foo.bar.foo'
     - name: Verify third property has been read correctly
-      if: steps.read_third_property.outputs.value != 'foo bar'
+      if: steps.read_third_property.outputs.foo-bar-foo != 'foo bar'
       run: exit 1
 
       # test 3
@@ -40,9 +40,9 @@ jobs:
       uses: ./
       with:
         path: './test/foo.properties'
-        property: 'foo.bar'
+        properties: 'foo.bar'
     - name: Verify second property has been read correctly
-      if: steps.read_second_property.outputs.value != 'foobar'
+      if: steps.read_second_property.outputs.foo-bar != 'foobar'
       run: exit 1
 
     # test 4: properties with spaces around the equals sign.
@@ -51,7 +51,19 @@ jobs:
       uses: ./
       with:
         path: './test/foo.properties'
-        property: 'with.space'
+        properties: 'with.space'
     - name: Verify property with spaces has been read correctly
-      if: steps.read_property_with_spaces.outputs.value != '42'
+      if: steps.read_property_with_spaces.outputs.with-space != '42'
+      run: exit 1
+
+    # test 5: read multiple properties
+    - name: Read multiple properties
+      id: read_multiple_properties
+      uses: ./
+      with:
+        path: './test/foo.properties'
+        properties: 'foo foo.bar'
+    - name: Verify multiple properties have been read correctly
+      if: steps.read_multiple_properties.outputs.foo != 'bar'
+        || steps.read_multiple_properties.outputs.foo-bar != 'foobar'
       run: exit 1

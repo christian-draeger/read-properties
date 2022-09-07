@@ -15,21 +15,24 @@ set -euo pipefail
 main() {
 
   local path
-  local property
+  local properties
   local result
 
   path="$1"
-  property="$2"
+  properties="$2"
 
   echo "path to properties-file: $path"
-  echo "property key: $property"
+  echo "property keys: $properties"
 
-  # For lines that have the given property on the left-hand side, remove 
-  # the property name, the equals and any spaces to get the property value.
-  result=$(sed -n "/^[[:space:]]*$property[[:space:]]*=[[:space:]]*/s/^[[:space:]]*$property[[:space:]]*=[[:space:]]*//p" "$path")
+  for key in $properties; do
+    # For lines that have the given property on the left-hand side, remove
+    # the property name, the equals and any spaces to get the property value.
+    result=$(sed -n "/^[[:space:]]*$key[[:space:]]*=[[:space:]]*/s/^[[:space:]]*$key[[:space:]]*=[[:space:]]*//p" "$path")
 
-  echo "property value: $result"
-  echo ::set-output name=value::"$result"
+    echo "value of '$key': $result"
+    # shellcheck disable=SC2001
+    echo "::set-output name=$(echo "$key" | sed 's/[^A-Za-z0-9_]/-/g')::$result"
+  done
 }
 
 main "$1" "$2"

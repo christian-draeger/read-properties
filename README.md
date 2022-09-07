@@ -14,15 +14,13 @@ This is a GitHub action to read from java `.properties` files.
 
 **Required** The path to properties file to read.
 
-### `property`
+### `properties`
 
-**Required** The property you want to read.
+**Required** The properties you want to read. Space separated
 
 ## Outputs
 
-### `value`
-
-The value of the given property.
+For each provided property, one output of the same name exists. Because the names of outputs can only contain alphanumeric characters, `-` and `_`, any other character is replaced by a `-`.
 
 ## Example usage
 
@@ -31,10 +29,10 @@ The value of the given property.
       uses: christian-draeger/read-properties@1.0.1
       with:
         path: './src/main/resources/application.properties'
-        property: 'the.key.of.the.property'
+        properties: 'the.key.of.a.property the.key.of.another.property'
     - name: Do something with your bumped release version
-      run: echo ${{ steps.read_property.outputs.value }}
-      # will print "the value of 'the.key.of.the.property'"
+      run: echo ${{ steps.read_property.outputs.the-key-of-a-property }}
+      # will print "the value of 'the.key.of.a.property'"
 
 # License
 The scripts and documentation in this project are released under the [MIT License](LICENSE)
