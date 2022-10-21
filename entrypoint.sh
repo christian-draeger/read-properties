@@ -31,7 +31,7 @@ main() {
 
     echo "value of '$key': $result"
     # shellcheck disable=SC2001
-    echo "::set-output name=$(echo "$key" | sed 's/[^A-Za-z0-9_]/-/g')::$result"
+    echo "$(echo "$key" | sed 's/[^A-Za-z0-9_]/-/g')=$result" >> $GITHUB_OUTPUT
   done
 }
 
